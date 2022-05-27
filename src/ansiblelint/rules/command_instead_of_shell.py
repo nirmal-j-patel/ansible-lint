@@ -139,7 +139,14 @@ if "pytest" in sys.modules:
 
     from ansiblelint.testing import RunFromText  # pylint: disable=ungrouped-imports
 
-    @pytest.mark.parametrize(("rule_runner", "text", "expected"), ((UseCommandInsteadOfShellRule, SUCCESS_PLAY, 0), (UseCommandInsteadOfShellRule, FAIL_PLAY, 3)), indirect=["rule_runner"])
+    @pytest.mark.parametrize(
+        ("rule_runner", "text", "expected"),
+        (
+            (UseCommandInsteadOfShellRule, SUCCESS_PLAY, 0),
+            (UseCommandInsteadOfShellRule, FAIL_PLAY, 3),
+        ),
+        indirect=["rule_runner"],
+    )
     def test_rule_command_instead_of_shell(
         rule_runner: RunFromText, text: str, expected: int
     ) -> None:
